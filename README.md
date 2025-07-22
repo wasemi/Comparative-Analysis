@@ -39,6 +39,12 @@ The airline industry is regionally diverse, and profitability can vary significa
 - Fleet Utilization Proxy: Calculate aircraft utilization, where ask = Available Seat Kilometers
 - Average Airline Age
 - Show a count of low-cost carriers per region
+- EBIT in USD (ebit_usd)
+- Load Factor (load_factor)
+- Number of Routes (num_routes)
+- Passenger Yield (passenger_yield)
+- Average Fleet Age (avg_fleet_age)
+
 
 ### Data Analysis
 These are queries i used in answering the business question
@@ -98,4 +104,47 @@ SELECT COUNT(low_cost_carrier) AS count_of_lcc, region
 FROM airline
 WHERE low_cost_carrier = 'Y'
 GROUP BY region
+
+--low_cost_carrier airlines
+SELECT airline_name AS low_cost_airlines, ebit_usd, load_factor, num_routes, passenger_yield,
+	avg_fleet_age
+FROM airline
+WHERE low_cost_carrier = 'Y'
+GROUP BY airline_name, ebit_usd, load_factor, num_routes, passenger_yield,
+	avg_fleet_age
+)
+
+--non_lowcost_carrier airlines
+SELECT airline_name AS non_low_cost_airlines, ebit_usd, load_factor, num_routes, passenger_yield,
+	avg_fleet_age
+FROM airline
+WHERE low_cost_carrier = 'N'
+GROUP BY airline_name, ebit_usd, load_factor, num_routes, passenger_yield,
+	avg_fleet_age
+	
+--What is the average EBIT for low-cost vs. non-low-cost airlines?
+SELECT 
+    (SELECT AVG(ebit_usd) 
+     FROM airline 
+     WHERE low_cost_carrier = 'Y') AS avg_ebit_low_cost,
+    
+    (SELECT AVG(ebit_usd) 
+     FROM airline 
+     WHERE low_cost_carrier = 'N') AS avg_ebit_non_low_cost;
+
+--How does the passenger yield compare between the two groups?
+SELECT
+    (SELECT AVG(passenger_yield)
+     FROM airline 
+     WHERE low_cost_carrier = 'Y') AS avg_yield_low_cost,
+    
+    (SELECT AVG(passenger_yield) 
+     FROM airline 
+     WHERE low_cost_carrier = 'N') AS avg_yield_non_low_cost;
+
+SELECT low_cost_carrier,avg_fleet_age
+FROM airline
+WHERE low_cost_carrier = 'Y'
+GROUP BY low_cost_carrier,avg_fleet_age
+
 ```
