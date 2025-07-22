@@ -68,21 +68,15 @@ SELECT iata_code, airline_name, region, functional_currency, ebit_usd, load_fact
 FROM airline
 
 --calculate averag EBIT that is Earnings before interest and Taxes
-SELECT region, AVG(ebit_usd) AS avg_ebit
+--average load factor and average passenger yield
+SELECT 
+    region,
+    AVG(ebit_usd) AS avg_ebit_usd,
+    AVG(load_factor) AS avg_load_factor,
+    AVG(passenger_yield) AS avg_passenger_yield,
+    AVG(airline_age) AS avg_airline_age
 FROM airline
-GROUP BY region 
-
-SELECT * FROM airline
-
---calculate average load factor
-SELECT region, AVG(load_factor) AS avg_load_factor
-FROM airline
-GROUP BY region 
-
---calculate average airline_age
-SELECT region, AVG(airline_age) AS avg_airline_age
-FROM airline
-GROUP BY region 
+GROUP BY region;
 
 
 --calculate Fleet Utilization Proxy: Calculate aircraft utilization as ask / fleet_size
@@ -92,10 +86,6 @@ FROM airline
 GROUP BY airline_name, region, aircraft_utilisation, fleet_size 
 ORDER BY fleet_utilisation_proxy DESC
 
---calculate average airline age 
-SELECT region, AVG(passenger_yield) AS avg_passenger_yield
-FROM airline
-GROUP BY region 
 
 --Which region has the best overall balance across profitability and operational efficiency?
 SELECT region, SUM(ebit_usd) AS EBIT, SUM(load_factor) AS load_factor, SUM(passenger_yield) AS passenger_yield
