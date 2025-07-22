@@ -36,7 +36,7 @@ The airline industry is regionally diverse, and profitability can vary significa
 - Average EBIT (USD)
 - Average Load Factor
 - Average Passenger Yield
-- a, where ask = Available Seat Kilometers
+- Fleet Utilization Proxy: Calculate aircraft utilization, where ask = Available Seat Kilometers
 - Average Airline Age
 - Show a count of low-cost carriers per region
 
