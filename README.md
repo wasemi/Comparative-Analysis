@@ -148,3 +148,8 @@ WHERE low_cost_carrier = 'Y'
 GROUP BY low_cost_carrier,avg_fleet_age
 
 ```
+### Findings
+- Middle East has the highest Earnings Before Interest and Taxes, followed by North America and Latin America, and this signifies profibitability of airlines in thos regions
+- Africa has the highest passenger yield.
+- For efficiency, North America has the highest load factor and Middle East together with Europe with newest airlines.
+- Asia pacific has an has the best overall balance across profitability and operational efficiency
