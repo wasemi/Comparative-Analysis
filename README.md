@@ -6,7 +6,7 @@ The airline industry is regionally diverse, and profitability can vary significa
 ### Data Sources - The data source used is Airline Performance analysis
 
 ### Meta Data
-. iata_code - The unique 2- or 3-letter airline code assigned by IATA
+-  iata_code - The unique 2- or 3-letter airline code assigned by IATA
 . airline_name - Full name of the airline
 . region- Geographical region where the airline is primarily based or operates
 . functional_currency- The currency used in the airline financial reporting
